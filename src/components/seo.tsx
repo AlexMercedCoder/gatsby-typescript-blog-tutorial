@@ -10,7 +10,21 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-const Seo = ({ description, lang, meta, title }) => {
+
+interface Props {
+  description?: string
+  lang?: string
+  meta?: []
+  title: string
+}
+
+interface Meta {
+  property?: string,
+  name?: string,
+  content: string
+}
+
+const Seo = ({ description, lang, meta, title }:Props) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -30,13 +44,21 @@ const Seo = ({ description, lang, meta, title }) => {
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
 
+  let typeSafeMeta: Array<Meta>
+
+  if (meta instanceof Array){
+    typeSafeMeta = meta
+  } else {
+    typeSafeMeta = []
+  }
+
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : ''}
       meta={[
         {
           name: `description`,
@@ -70,7 +92,8 @@ const Seo = ({ description, lang, meta, title }) => {
           name: `twitter:description`,
           content: metaDescription,
         },
-      ].concat(meta)}
+        ...typeSafeMeta
+      ]}
     />
   )
 }

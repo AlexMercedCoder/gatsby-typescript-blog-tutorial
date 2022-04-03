@@ -17,6 +17,7 @@
     "gatsby-plugin-offline": "^5.11.1",
     "gatsby-plugin-react-helmet": "^5.11.0",
     "gatsby-plugin-sharp": "^4.11.1",
+    "gatsby-plugin-typescript": "^4.11.1",
     "gatsby-remark-copy-linked-files": "^5.11.0",
     "gatsby-remark-images": "^6.11.1",
     "gatsby-remark-prismjs": "^6.11.0",
@@ -33,7 +34,12 @@
     "typeface-montserrat": "0.0.75"
   },
   "devDependencies": {
-    "prettier": "^2.6.1"
+    "@types/react-helmet": "^6.1.5",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "eslint": "^7.32.0",
+    "prettier": "^2.6.1",
+    "typescript": "^4.6.3"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
   "keywords": [
@@ -51,6 +57,7 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "type-check": "tsc --noEmit"
   }
 }
